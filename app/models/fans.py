@@ -7,6 +7,7 @@ class Fan(db.Model):
     nome = db.Column(db.String(120), nullable=False)
     idade = db.Column(db.Integer, nullable=False)
     cpf = db.Column(db.String(14), nullable=False)
+    rg = db.Column(db.String(14), nullable=False)
     endereco = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(120), nullable=False)
 
@@ -17,6 +18,7 @@ class Fan(db.Model):
     twitter = db.Column(db.String(120), nullable=True)
     instagram = db.Column(db.String(120), nullable=True)
     outra_rede = db.Column(db.String(120), nullable=True)
+    fan_score = db.Column(db.Float, nullable=True)
 
     perfil_esports = db.Column(db.String(250), nullable=True)
     documento_nome = db.Column(db.String(200), nullable=True)

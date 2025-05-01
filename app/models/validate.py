@@ -1,10 +1,10 @@
 import re 
 
-def validate_emaiL(email):
+def validate_emaiL(email: str) -> bool:
     regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     return re.match(regex_email, email)
 
-def validate_cpf(cpf):
+def validate_cpf(cpf: str) -> bool:
     """ Efetua a validação do CPF, tanto formatação quando dígito verificadores.
     @https://pt.stackoverflow.com/questions/64608/como-validar-e-calcular-o-d%C3%ADgito-de-controle-de-um-cpf - Woss
     Parâmetros:
