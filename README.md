@@ -11,16 +11,16 @@
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas para as seguintes tarefas:
 
 - [ ] Integração com APIs de redes sociais
-Capturar dados dos perfis informados no formulário, incluindo tweets, curtidas em posts da FURIA, reposts e se o usuário segue a FURIA, para gerar métricas de engajamento mais completas.
+ - Capturar dados dos perfis informados no formulário, incluindo tweets, curtidas em posts da FURIA, reposts e se o usuário segue a FURIA, para gerar métricas de engajamento mais completas.
 
 - [ ] Análise de texto (NLP) aprimorada
-Melhorar a detecção de sentimentos (positividade/negatividade) nas interações, usando NLP de forma mais precisa e robusta, reduzindo erros causados por nuances ou ironias.
+ - Melhorar a detecção de sentimentos (positividade/negatividade) nas interações, usando NLP de forma mais precisa e robusta, reduzindo erros causados por nuances ou ironias.
 
 - [ ] Implementação de cache
-Adicionar cache no backend para reduzir requisições desnecessárias e melhorar a performance geral do chatbot.
+- Adicionar cache no backend para reduzir requisições desnecessárias e melhorar a performance geral do chatbot.
 
 - [ ] Melhoria na experiência do usuário (UX)
-Tornar a interface mais atraente, intuitiva e amigável para incentivar o engajamento e o preenchimento do formulário pelos fãs
+- Tornar a interface mais atraente, intuitiva e amigável para incentivar o engajamento e o preenchimento do formulário pelos fãs
 
 ## 💻 Pré-requisitos
 
