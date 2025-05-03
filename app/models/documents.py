@@ -1,6 +1,5 @@
 from pathlib import Path 
 from pdf2image import convert_from_path
-from datetime import date, datetime
 import easyocr
 import re
 
@@ -73,35 +72,6 @@ def correct_cpf(text: str) -> str:
         # Reinsere pontos no formato padrão
         return f"{text[:3]}.{text[3:6]}.{text[6:9]}-{text[10:]}"
     return text  # retorna como está se não bater o padrão esperado
-
-def validate_document_data(form, doc_cpf, doc_birth):
-    if form['cpf'] != doc_cpf:
-        return False, 'CPF não bate com o do documento'
-
-    form_age = int(form['idade'])
-    birth_date = datetime.strptime(doc_birth, "%d/%m/%Y").date()
-    today = date.today()
-    calculated_age = today.year - birth_date.year
-
-    if form_age != calculated_age:
-        return False, 'Idade não bate com o do documento'
-
-    # Se passou de tudo:
-    return True, ''
-
-
-def validate_email(email: str) -> bool:
-    email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    return re.match(email_regex, email) is not None
-
-def validate_twitter(username: str) -> bool:
-    return re.match(r'^[A-Za-z0-9_]{1,15}$', username) is not None
-
-def validate_instagram(username: str) -> bool:
-    return re.match(r'^[A-Za-z0-9._]{1,30}$', username) is not None
-
-def validate_twitch(username: str) -> bool:
-    return re.match(r'^[a-zA-Z][a-zA-Z0-9_]{3,24}$', username) is not None
 
 if __name__ == '__main__':
     checkDocument()
