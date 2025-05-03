@@ -26,5 +26,17 @@ def fan_analyse(texto: str) -> int:
     resultado['fan_score'] = round(resultado['Positive'] * 100)
     return resultado
 
+def calculate_fan_score(form_data: dict) -> int:
+    score = 0
+    if form_data['interesses']:
+        score += fan_analyse(form_data['interesses'])['fan_score']
+    if form_data['eventos']:
+        score += fan_analyse(form_data['eventos'])['fan_score']
+    if form_data['compras']:
+        score += fan_analyse(form_data['compras'])['fan_score']
+    if form_data['twitter'] or form_data['instagram'] or form_data['twitch']:
+        score += 3
+    return score
+
 if __name__ == '__main__':
     print(fan_analyse('teamo furia'))

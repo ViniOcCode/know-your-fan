@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Termos de serviço{% endblock %}
+{% block content %}
+        <div class="relative z-10 max-w-2xl mx-auto mt-10 p-6 bg-gray-900 rounded-2xl shadow-md">
+        <h1 class="text-3xl font-bold text-white mb-6 text-center">Login</h1>
+        <p class="mb-4 text-white">
+            Bem-vindo ao cadastro de fãs da FURIOSO. Ao se cadastrar, você concorda com os seguintes termos:
+        </p>
+
+        <h2 class="text-xl font-semibold mb-2 text-white">1. Coleta e Uso de Dados</h2>
+        <p class="mb-4 text-white">
+            Coletamos informações pessoais como nome, idade, CPF, e redes sociais para fins de cadastro, comunicação e análise de perfil dos fãs. Esses dados não serão vendidos ou compartilhados com terceiros sem seu consentimento.
+        </p>
+
+        <h2 class="text-xl font-semibold mb-2 text-white">2. Segurança</h2>
+        <p class="mb-4 text-white">
+            Seus dados são armazenados em nossos servidores com medidas razoáveis de segurança. No entanto, não podemos garantir 100% de proteção contra acessos não autorizados.
+        </p>
+
+        <h2 class="text-xl font-semibold mb-2 text-white">3. Direitos do Usuário</h2>
+        <p class="mb-4 text-white">
+            Você tem o direito de acessar, corrigir ou solicitar a exclusão de seus dados a qualquer momento. Para isso, entre em contato pelo e-mail <a href="mailto:suporte@furioso.com" class="underline text-blue-400 hover:text-blue-300">suporte@furioso.com</a>.
+        </p>
+
+        <h2 class="text-xl font-semibold mb-2 text-white">4. Uso de Imagem</h2>
+        <p class="mb-4 text-white">
+            Caso você envie documentos ou imagens, entende e concorda que poderão ser utilizados apenas para fins de verificação de identidade.
+        </p>
+
+        <h2 class="text-xl font-semibold mb-2 text-white">5. Alterações nos Termos</h2>
+        <p class="mb-4 text-white">
+            Reservamo-nos o direito de alterar estes termos a qualquer momento. Recomendamos que você os revise periodicamente.
+        </p>
+
+        <p class="mt-6 text-center text-white">
+            <a href="/form" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition text-white">
+                Voltar para o site
+            </a>
+        </p>
+    </div>
+{% endblock %}

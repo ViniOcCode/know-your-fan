@@ -6,7 +6,7 @@ def validate_emaiL(email: str) -> bool:
 
 def validate_cpf(cpf: str) -> bool:
     """ Efetua a validação do CPF, tanto formatação quando dígito verificadores.
-    @https://pt.stackoverflow.com/questions/64608/como-validar-e-calcular-o-d%C3%ADgito-de-controle-de-um-cpf - Woss
+    https://pt.stackoverflow.com/questions/64608/como-validar-e-calcular-o-d%C3%ADgito-de-controle-de-um-cpf - Woss
     Parâmetros:
         cpf (str): CPF a ser validado
 

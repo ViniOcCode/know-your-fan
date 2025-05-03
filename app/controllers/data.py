@@ -1,78 +1,104 @@
-from flask import Blueprint, render_template, request, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for
+from sqlalchemy.exc import IntegrityError
 from app.models.fans import Fan
 from app.models.validate import *
 from app.models.utils import *
-from app.models.documents import checkDocument
+from app.models.documents import *
 from app import db
 from app.templates import *
 from pathlib import Path
-import re
 import os 
+from datetime import date, datetime
 
 data = Blueprint('data', __name__)
 
-@data.route('/', methods=['GET'])
+@data.route('/', methods=['GET','POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        cpf = request.form['cpf']
+        fan = Fan.query.filter_by(cpf=cpf).first()
+        if fan:
+            return redirect(url_for('data.list_fans', fan_id=fan.id))
+        else:
+            error = 'CPF não encontrado. Verifique ou cadastre-se.'
+    return render_template('login.html', error=error)
+
+
+@data.route('/form', methods=['GET'])
 def get_data():
-    return render_template('form.html')
+    return render_template('form.html', form=request.form)
 
 @data.route('/submit', methods=['POST'])
-def set_data():
-    if not validate_emaiL(request.form['email']):
-        return render_template("form.html", error='Email inválido')
+def register():
+    form = request.form
+    print(type(form))
+
+    if not validate_email(form['email']):
+        return render_template('form.html', error='Email inválido', form=form)
+
+    if not validate_twitter(form['twitter']):
+        return render_template('form.html', error='Twitter inválido', form=form)
+
+    if not validate_instagram(form['instagram']):
+        return render_template('form.html', error='Instagram inválido', form=form)
+
+    if not validate_twitch(form['twitch']):
+        return render_template('form.html', error='Twitch inválido', form=form)
 
     document = request.files['documento']
-    
-    # creation and checking file
-    if document:
-        filename = document.filename
-        dir_path = Path("app/controllers/uploads")
-        path = os.path.join(dir_path, filename)
-        os.makedirs(f'{dir_path}', exist_ok=True)
-        document.save(path)
-        cpf, rg = checkDocument(dir_path)
+    filename = None
+    doc_cpf = rg = doc_birth = ''
 
-    if rg == None:
-        return render_template("form.html", error='A imagem fornecida não é um RG ou está em qualidade baixa')
+    if not document:
+        return render_template('form.html', error='Documento não foi enviado.', form=form)
 
-    # CPF check
-    if cpf != request.form['cpf'] or not validate_cpf(request.form['cpf']):
-        return render_template("form.html", error='CPF inválido')
+    filename = document.filename
+    dir_path = Path('app/controllers/uploads')
+    os.makedirs(dir_path, exist_ok=True)
+    path = dir_path / filename
+    document.save(path)
+        
+    # Aqui chamamos checkDocument UMA VEZ
+    doc_cpf, rg, doc_birth = checkDocument(dir_path)
 
-    if request.form["interesses"]  or request.form["eventos"] or request.form["compras"]:
-        interesses_score = fan_analyse(request.form['interesses'])
-        eventos_score = fan_analyse(request.form['eventos'])
-        compras_score = fan_analyse(request.form['compras'])
+    # Validamos com os dados já lidos
+    valid, error_msg = validate_document_data(form, doc_cpf, doc_birth)
 
-        fan_score = interesses_score['fan_score'] + eventos_score['fan_score'] + compras_score['fan_score']
-    
+    if not valid:
+        return render_template('form.html', error=error_msg, form=form)
+
+    fan_score = calculate_fan_score(form)
+    try:
         new_fan = Fan(
-            nome = request.form["nome"],
-            idade = request.form["idade"],
-            cpf = request.form["cpf"],
-            rg = rg,
-            endereco = request.form["endereco"],
-            email=request.form["email"],
-            interesses=request.form["interesses"],
-            eventos=request.form["eventos"],
-            compras=request.form["compras"],
+            nome=form['nome'],
+            idade=form['idade'],
+            cpf=form['cpf'],
+            rg=rg,
+            endereco=form['endereco'],
+            email=form['email'],
+            interesses=form['interesses'],
+            eventos=form['eventos'],
+            compras=form['compras'],
             fan_score=fan_score,
-            twitter=request.form["twitter"],
-            instagram=request.form["instagram"],
-            outra_rede=request.form["outra_rede"],
-            perfil_esports=request.form["perfil_esports"],
+            twitter=form['twitter'],
+            instagram=form['instagram'],
+            twitch=form['twitch'],
             documento_nome=filename
         )
 
         db.session.add(new_fan)
         db.session.commit()
-        return f"Salvo: {new_fan.nome}"
+        return redirect(url_for('data.list_fans'))
+    except IntegrityError:
+        return render_template('form.html', error='CPF já cadastrado!', form=form)
+
 
 @data.route('/fans', methods=['GET'])
 def list_fans():
-    fans = Fan.query.all() 
-    return jsonify([{
-                    'id': fan.id,
-                    'nome': fan.nome,
-                    'idade': fan.idade,
-                    'fan_score': fan.fan_score
-                    } for fan in fans])
+    fans = Fan.query.order_by(Fan.fan_score.desc()).all() 
+    return render_template('fans_table.html', fans=fans)
+
+@data.route('/termos', methods=['GET'])
+def termos():
+    return render_template('tos.html')
