@@ -1,9 +1,7 @@
 node_modules
-uploads
+__pycache__
+.venv
 package-lock.json
 package.json
-.venv
-.vscode
-__pycache__
 .env
-database.db
+.vscode
