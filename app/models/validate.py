@@ -93,7 +93,7 @@ def validate_twitter(username: str) -> bool:
     Returns:
         bool: True if the username is valid (1–15 alphanumeric characters or underscores), False otherwise.
     """
-    return re.match(r'^[A-Za-z0-9_]{1,15}$', username) is not None
+    return re.match(r'^[A-Za-z0-9_]{1,15}$', username.strip()) is not None
 
 def validate_instagram(username: str) -> bool:
     """
@@ -105,7 +105,7 @@ def validate_instagram(username: str) -> bool:
     Returns:
         bool: True if the username is valid (1–30 characters, letters, numbers, dots, or underscores), False otherwise.
     """
-    return re.match(r'^[A-Za-z0-9._]{1,30}$', username) is not None
+    return re.match(r'^[A-Za-z0-9._]{1,30}$', username.strip()) is not None
 
 def validate_twitch(username: str) -> bool:
     """
@@ -117,7 +117,7 @@ def validate_twitch(username: str) -> bool:
     Returns:
         bool: True if the username is valid (starts with a letter, 4–25 characters, alphanumeric or underscores), False otherwise.
     """
-    return re.match(r'^[a-zA-Z][a-zA-Z0-9_]{3,24}$', username) is not None
+    return re.match(r'^[a-zA-Z][a-zA-Z0-9_]{3,24}$', username.strip()) is not None
 
 if __name__ == '__main__':
     print('teste')
