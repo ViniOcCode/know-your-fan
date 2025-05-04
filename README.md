@@ -86,8 +86,8 @@ know-your-fan/
 │      ├── documents.py            # Checagem da imagem do documento
 │      ├── fans.py                 # Modelo dos fans
 │      ├── utils.py                # Funções utilitárias
-│      ├── validate.py             # Validação de algumas informações
-│      └──  __init.py              # inicialização do Flask 
+│      └── validate.py             # Validação de algumas informações
+│     
 │                
 │                    
 │
@@ -107,7 +107,8 @@ know-your-fan/
 ├── main.py                        # Cria a app Flask e registra as rotas
 ├── requirements.txt               # Dependências do projeto
 ├── .gitignore
-└── README.md
+├── README.md
+└──  __init__.py                      # Configuração do Flask 
 ```                  
 
  
