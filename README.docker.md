@@ -17,9 +17,7 @@ ___
 ```bash
 docker run -p 8080:5000 know-your-fan:1.0
 ```
-A porta pode local pode ser qualquer uma! Você escolhe uma para você, ela que vai rodar o localhost. Por exemplo, se você colocar 8080, a aplicação estará rodando na porta localhost:8080
-
-Basta colocar isso no navegador:
+A porta pode local pode ser qualquer uma! Você escolhe uma para você, ela que vai rodar o localhost. Por exemplo, se você colocar 8080, a aplicação estará rodando na porta 8080, portanto basta colocar isso no navegador:
 ```bash
 http://localhost:8080
 ```
