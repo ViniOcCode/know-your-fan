@@ -8,7 +8,6 @@ from app import db
 from app.templates import *
 from pathlib import Path
 import os 
-from datetime import date, datetime
 
 data = Blueprint('data', __name__)
 
