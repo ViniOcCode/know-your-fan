@@ -37,14 +37,14 @@ pip install --no-cache-dir -r requirements.txt -f https://download.pytorch.org/w
 
 Se você quiser instalar o código fonte para depuarar em seu ambiente basta você fazer
 
-bash
+```bash
 git clone https://github.com/ViniOcCode/know-your-fan.git
-
+```
 
 
 ## 📫 Contribuindo para a aplicação
 
-Para contribuir com o ChatBot da FURIA siga estas etapas:
+Para contribuir com a aplicação siga estas etapas:
 
 1. Bifurque este repositório.
 2. Crie um branch: git checkout -b <nome_branch>.
@@ -67,12 +67,12 @@ O ChatBot é dividido em módulos especializados que interpretam mensagens e ret
 3. Se não, o usuário tem a opção de cadastro para preencher e enviar o formulário.
 4. O Back-End com Flask analisa suas informações e seu documento (RG).
 5. Caso esteja tudo correto o usuário é direcionado à uma tabela onde pode ver sua pontuação.
-6. A função analisa a intenção usando palavras-chave (com RapidFuzz)
 
 ---
 
 ### 📁 Estrutura do Projeto
 
+```bash
 know-your-fan/
 │
 ├── app/
@@ -83,7 +83,8 @@ know-your-fan/
 │      ├── documents.py            # Checagem da imagem do documento
 │      ├── fans.py                 # Modelo dos fans
 │      ├── utils.py                # Funções utilitárias
-│      └── validate.py             # Validação de algumas informações
+│      ├── validate.py             # Validação de algumas informações
+│      └──  __init.py              # inicialização do Flask 
 │                
 │                    
 │
@@ -103,8 +104,8 @@ know-your-fan/
 ├── main.py                        # Cria a app Flask e registra as rotas
 ├── requirements.txt               # Dependências do projeto
 ├── .gitignore
-├── README.md
-└──  __init.py                     # inicialização do Flask
+└── README.md
+```                  
 
  
 
