@@ -1,6 +1,27 @@
 from app import db
 
 class Fan(db.Model):
+    """
+    Represents a fan in the database, storing personal information, interests,
+    social media handles, and fan engagement data.
+
+    Attributes:
+        id (int): Primary key, auto-incremented.
+        nome (str): Name of the fan, unique and required.
+        idade (int): Age of the fan, unique and required.
+        cpf (str): CPF (Brazilian taxpayer ID), required.
+        rg (str): RG (Brazilian ID number), required.
+        endereco (str): Address of the fan, required.
+        email (str): Email address, required.
+        interesses (str): Fan's interests, optional.
+        eventos (str): Events attended or interested in, optional.
+        compras (str): Purchase history, optional.
+        twitter (str): Twitter handle, optional.
+        instagram (str): Instagram handle, optional.
+        fan_score (float): Score representing fan engagement, optional.
+        twitch (str): Twitch username or channel, optional.
+        documento_nome (str): Name of the document associated with the fan, optional.
+    """
     __tablename__ = 'fans'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)

@@ -1,31 +1,21 @@
 import re 
 from datetime import date, datetime
 
-def validate_emaiL(email: str) -> bool:
-    regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-    return re.match(regex_email, email)
 
 def validate_cpf(cpf: str) -> bool:
-    """ Efetua a validação do CPF, tanto formatação quando dígito verificadores.
+    """
     https://pt.stackoverflow.com/questions/64608/como-validar-e-calcular-o-d%C3%ADgito-de-controle-de-um-cpf - Woss
-    Parâmetros:
-        cpf (str): CPF a ser validado
+    Validates a Brazilian CPF, including format and verification digits.
 
-    Retorno:
-        bool:
-            - Falso, quando o CPF não possuir o formato 999.999.999-99;
-            - Falso, quando o CPF não possuir 11 caracteres numéricos;
-            - Falso, quando os dígitos verificadores forem inválidos;
-            - Verdadeiro, caso contrário.
+    Args:
+        cpf (str): CPF to validate, expected in the format 999.999.999-99.
 
-    Exemplos:
-
-    >>> validate('529.982.247-25')
-    True
-    >>> validate('52998224725')
-    False
-    >>> validate('111.111.111-11')
-    False
+    Returns:
+        bool: 
+            - False if the CPF format is invalid;
+            - False if the CPF does not have 11 numeric characters;
+            - False if the verification digits are invalid;
+            - True if the CPF is valid.
     """
 
     # Verifica a formatação do CPF
@@ -53,7 +43,32 @@ def validate_cpf(cpf: str) -> bool:
 
     return True
 
+def validate_email(email: str) -> bool:
+    """
+    Validates if the given email address has a correct format.
+
+    Args:
+        email (str): Email address to validate.
+
+    Returns:
+        bool: True if the email format is valid, False otherwise.
+    """
+    regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    return re.match(regex_email, email)
+
 def validate_document_data(form, doc_cpf, doc_birth):
+    """
+    Checks if the CPF and birth date extracted from the document match the form data.
+
+    Args:
+        form (dict): Form data containing 'cpf' and 'idade'.
+        doc_cpf (str): CPF extracted from the document.
+        doc_birth (str): Birth date extracted from the document in DD/MM/YYYY format.
+
+    Returns:
+        tuple: (bool, str) where bool indicates if validation passed,
+        and str provides an error message if validation failed.
+    """
     if form['cpf'] != doc_cpf:
         return False, 'CPF não bate com o do documento'
 
@@ -68,18 +83,40 @@ def validate_document_data(form, doc_cpf, doc_birth):
     # Se passou de tudo:
     return True, ''
 
-
-def validate_email(email: str) -> bool:
-    email_regex = r'^[\w\.-]+@[\w\.-]+\.\w+$'
-    return re.match(email_regex, email) is not None
-
 def validate_twitter(username: str) -> bool:
+    """
+    Validates if a Twitter username has a valid format.
+
+    Args:
+        username (str): Twitter username.
+
+    Returns:
+        bool: True if the username is valid (1–15 alphanumeric characters or underscores), False otherwise.
+    """
     return re.match(r'^[A-Za-z0-9_]{1,15}$', username) is not None
 
 def validate_instagram(username: str) -> bool:
+    """
+    Validates if an Instagram username has a valid format.
+
+    Args:
+        username (str): Instagram username.
+
+    Returns:
+        bool: True if the username is valid (1–30 characters, letters, numbers, dots, or underscores), False otherwise.
+    """
     return re.match(r'^[A-Za-z0-9._]{1,30}$', username) is not None
 
 def validate_twitch(username: str) -> bool:
+    """
+    Validates if a Twitch username has a valid format.
+
+    Args:
+        username (str): Twitch username.
+
+    Returns:
+        bool: True if the username is valid (starts with a letter, 4–25 characters, alphanumeric or underscores), False otherwise.
+    """
     return re.match(r'^[a-zA-Z][a-zA-Z0-9_]{3,24}$', username) is not None
 
 if __name__ == '__main__':

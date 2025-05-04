@@ -4,6 +4,17 @@ import easyocr
 import re
 
 def checkFile(path: str, extensions: tuple = ('.pdf',)) -> list:
+    """
+    Renames files in the specified directory to lowercase with underscores, 
+    and returns a list of files matching the given extensions.
+
+    Args:
+        path (str): Path to the directory to check.
+        extensions (tuple, optional): Valid file extensions. Defaults to ('.pdf',).
+
+    Returns:
+        list: List of Path objects for the valid files found.
+    """
     path_obj = Path(path)
     valid_files = []
 
@@ -18,6 +29,15 @@ def checkFile(path: str, extensions: tuple = ('.pdf',)) -> list:
     return valid_files
 
 def pdfToImg(path: str) -> list:
+    """
+    Converts PDF files in the directory to high-resolution JPEG images.
+
+    Args:
+        path (str): Path to the directory containing the PDF files.
+
+    Returns:
+        list: List of paths to the generated JPEG images.
+    """
     pdf_files = checkFile(path, extensions=('.pdf',)) 
     saved_images = []
 
@@ -32,6 +52,15 @@ def pdfToImg(path: str) -> list:
     return saved_images
 
 def checkDocument(path: str) -> tuple:
+    """
+    Converts PDFs to images, runs OCR on the images, and tries to extract CPF, RG, and birth date.
+
+    Args:
+        path (str): Path to the directory containing the documents.
+
+    Returns:
+        tuple: A tuple (cpf, rg, birth) with the extracted data, or None if not found.
+    """
     # Gera imagens dos PDFs
     pdfToImg(path)
 
@@ -67,6 +96,15 @@ def checkDocument(path: str) -> tuple:
     return cpf, rg, birth
 
 def correct_cpf(text: str) -> str:
+    """
+    Cleans and formats an extracted CPF number to the standard format XXX.XXX.XXX-XX.
+
+    Args:
+        text (str): Raw text containing the CPF.
+
+    Returns:
+        str: Properly formatted CPF, or the original text if it doesn't match the expected pattern.
+    """
     text = text.replace('/', '-').replace('.', '').replace(' ', '')
     if re.fullmatch(r'\d{9}-\d{2}', text):
         # Reinsere pontos no formato padrão

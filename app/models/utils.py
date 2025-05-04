@@ -11,6 +11,15 @@ model = AutoModelForSequenceClassification.from_pretrained(MODEL)
 labels = ['Negative', 'Neutral', 'Positive']
 
 def fan_analyse(texto: str) -> int:
+    """
+    Analyzes a text to compute a fan engagement score using a pretrained model.
+
+    Args:
+        texto (str): Input text to be analyzed.
+
+    Returns:
+        int: Calculated fan score (based on the 'Positive' label percentage).
+    """
     # Tokenização com truncamento e padding
     if texto == None or texto.strip() == '':
         return 0
@@ -27,6 +36,17 @@ def fan_analyse(texto: str) -> int:
     return resultado
 
 def calculate_fan_score(form_data: dict) -> int:
+    """
+    Calculates the total fan score based on form data, analyzing interests, events,
+    purchases, and presence on social media.
+
+    Args:
+        form_data (dict): Dictionary containing fan information, including
+            'interesses', 'eventos', 'compras', 'twitter', 'instagram', and 'twitch'.
+
+    Returns:
+        int: Total calculated fan score.
+    """
     score = 0
     if form_data['interesses']:
         score += fan_analyse(form_data['interesses'])['fan_score']
