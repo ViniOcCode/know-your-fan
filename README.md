@@ -31,7 +31,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 pip install --no-cache-dir -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
 ```
 - Você leu como o projeto [funciona](#como-funciona-a-aplicacao)
-- OU para você pular todos esses passos, você pode baixar Docker e dar uma olhada [aqui](README.docker.md)
+- OU para você pular todos esses passos, baixando Docker e dando uma olhada na documentação de como usar [aqui](README.docker.md)
 
 ## 🚀 instalando a aplicação 
 
