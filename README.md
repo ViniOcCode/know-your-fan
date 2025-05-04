@@ -1,4 +1,4 @@
-# Know Your Fan da FURIOSO | Um formulário para os fans da FURIA
+# Know Your Fan FURIOSO | Um formulário para os fans da FURIA
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
