@@ -28,9 +28,9 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - Python 3.12 e instalou os requerimentos usando 
 ```bash
-pip install requeriments.txt
+pip install --no-cache-dir -r requirements.txt -f https://download.pytorch.org/whl/torch_stable.html
 ```
-- Você leu como o projeto [funciona](#como-funciona-o-ChatBot-da-FURIA)
+- Você leu como o projeto [funciona](#como-funciona-a-aplicacao)
 - OU para você pular todos esses passos, você pode baixar Docker e dar uma olhada [aqui](README.docker.md)
 
 ## 🚀 instalando a aplicação 
