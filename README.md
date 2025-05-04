@@ -41,6 +41,15 @@ Se você quiser instalar o código fonte para depuarar em seu ambiente basta voc
 git clone https://github.com/ViniOcCode/know-your-fan.git
 ```
 
+e para iniciar a aplicação Flask, basta rodar o arquivo main.py na pasta raiz:
+```bash
+python main.py
+```
+
+Ou se quiser rodar com Gunicorn:
+```bash
+gunicorn main:app 
+```
 
 ## 📫 Contribuindo para a aplicação
 
